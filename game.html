@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
+
+   <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <marquee style="background-color: rgb(213, 21, 21); font-size: 200%;">practice project</marquee>
+    <header> <a href="index.html">home</a> <a href="about.html">about</a> <a href="contact.html">contactus</a><a href="cal.html">calculator</a>
+        <a href="game.html
+        ">game</a></header>
+        <main>
+            <h1 ><u>ROCK PAPER SCISSOR</u></h1>
+<br>
+<br>  
+<button class="game" onclick=" let choices = gencompch();
+let getrest = moves('rock',choices);
+showres('rock',choices,getrest);
+"><img  src="image/rock.jpeg"></button>
+
+<button class="game" onclick="  
+choices = gencompch();
+getrest = moves('paper',choices);
+ showres('paper',choices,getrest);
+"><img src="image/paper.jpeg"> </button>
+  
+<button class="game" onclick="
+ choices = gencompch();
+ getrest = moves('scissor',choices);
+ showres('scissor',choices,getrest);
+"
+><img src="image/scissor.jpeg"></button>
+<h3 id="usm" style="text-transform: uppercase";></h3>
+<h3 id="com" style="text-transform: uppercase";></h3>
+<h3 id="res" style="text-transform: uppercase";></h3>
+<h3 id="sc" style="text-transform: uppercase";></h3>
+<button onclick="resetscore()">reset </button>
+        </main>
+
+    
+    <script >  let compch;
+    let usermove;
+    let computermove;
+    let result;
+    let scorestr=localStorage.getItem('score')
+    let score;
+    resetscore(scorestr);
+    function resetscore(scorestr){
+        score=scorestr ? JSON.parse(scorestr):{
+        win :0,
+        lost :0,
+        tie :0,
+        };
+        score.displayscore= function(){
+            return `number of matches won:${score.win}, lost: ${score.lost} , tie ${score.tie}`
+        };
+        showres();
+    }
+    
+        function gencompch(){
+        
+            let randomnumber = Math.random()*3;  
+            if (randomnumber>0 && randomnumber <=1)
+            {
+               return 'rock';}
+            else if (randomnumber>1 && randomnumber <=2)
+            {
+                return 'paper';}
+            else{
+                return 'scissor';}   
+        }
+        function moves(usermove,computermove){
+            if(usermove==='rock'){
+               
+if( computermove==='rock')
+{
+    score.tie++;
+    return 'it is a tie';}
+else if(computermove==='paper')
+{
+    score.win++;
+    return 'user won';}
+else if(computermove==='scissor')
+{
+    score.win++;
+    return 'user won';}
+
+            }
+            else if(usermove==='paper')
+            {
+                if(computermove==='rock')
+{
+    score.lost++;
+    return 'computer won';}
+else if(computermove==='paper')
+{
+    score.tie++;
+    return 'it is a tie';}
+else if(computermove==='scissor')
+{
+    score.lost++;
+    return 'computer won';}
+            }else{
+                if(computermove==='rock')
+{
+    score.lost++;
+    return 'computer won';}
+else if(computermove==='paper')
+{
+    score.win++;
+    return 'user won';}
+else if(computermove==='scissor')
+{
+    score.tie++;
+    return 'it is a tie';}
+            }
+
+        }
+        function showres(usermove,computermove,result){
+            localStorage.setItem('score',JSON.stringify(score));
+            document.querySelector('#usm').innerText=usermove ? `you have chosen ${usermove}` : '';
+            document.querySelector(`#com`).innerText=computermove ? `computer has chosen ${computermove}` : '';
+            document.querySelector(`#res`).innerText=result || '';
+            document.querySelector(`#sc`).innerText=score.displayscore();
+           
+        }
+        </script>
+       
+</body>
+</html>
