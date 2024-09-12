@@ -1,4 +1,4 @@
 FROM ubuntu 
-RUN apt update && apt install nginx -y
+RUN apt update && apt install apache2 -y
 COPY . /var/www/html
-CMD nginx -g 'daemon off;'
+CMD apache2 -g 'daemon off;'
