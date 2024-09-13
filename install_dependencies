@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build the Docker image
-docker build -t my-image .
+docker build -t myhtmlfile .
 
 # Run the Docker container
-docker run -d my-image
+docker run -d myhtmlfile
