@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set environment variables for Docker Hub credentials
-export DOCKER_USERNAME=<smritiorganization>
-export DOCKER_PASSWORD=<pass123@123>
+export DOCKER_USERNAME= <smritiorganization>
+export DOCKER_PASSWORD= <pass123@123>
 
 # Log in to Docker Hub using environment variables and --password-stdin
 echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
