@@ -1,5 +1,5 @@
 #!/bin/bash
-docker login -u smritiorganization  -p pass123@123
+docker login -u $(dockernusers)  -p $(dockerpassword)
 
 # Pull the Docker image from the registry
 docker pull smritiorganization/ubuntu/apache2:latest
