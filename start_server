@@ -4,11 +4,19 @@
 export DOCKER_USERNAME=smritiorganization
 export DOCKER_PASSWORD=pass12341234
 
-# Log in to Docker Hub using environment variables and --password-stdin
-echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+# Configure the credential helper
+docker-credential-helper store --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
-# Pull the Docker image
-docker pull smritiorganization/ubuntu/apache2
+# Log in to Docker Hub using the credential helper
+docker login -u $DOCKER_USERNAME --password-stdin
 
-# Run the Docker container
-docker run -it smritiorganization/ubuntu/apache2
+# Check if the login was successful
+if [ $? -eq 0 ]; then
+  # Pull the Docker image
+  docker pull smritiorganization/ubuntu/apache2
+  # Run the Docker container
+  docker run -it smritiorganization/ubuntu/apache2
+else
+  echo "Login failed. Check your Docker Hub credentials."
+  exit 1
+fi
