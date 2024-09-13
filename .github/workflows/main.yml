@@ -1,0 +1,39 @@
+name: Deploy to AWS
+on:
+  push:
+    branches:
+      - "main"
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - name: Build Docker image
+      actions:
+        - name: Build
+          action: RunCommand
+          inputs:
+            - name: COMMAND
+              value: docker build -t my-html-page .
+            - name: WORKING_DIRECTORY
+              value: .
+
+deploy:
+  stage: deploy
+  environment:
+    name: production
+    url: http://13.234.116.55:80
+  script:
+    - name: Deploy to EC2
+      actions:
+        - name: Deploy
+          action: DeployToEC2
+          inputs:
+            - name: APPLICATION_NAME
+              value: htmlapp2
+            - name: DEPLOYMENT_GROUP_NAME
+              value: htmlgroup2
+            - name: DOCKER_IMAGE
+              value: dockerfile
