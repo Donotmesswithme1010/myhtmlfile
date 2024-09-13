@@ -1,40 +1,14 @@
 #!/bin/bash
 
-# Add the Docker repository
-sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
-
-# Install the docker-credential-secretservice store package with retry mechanism
-retry_count=0
-max_retries=5
-while [ $retry_count -lt $max_retries ]; do
-  if sudo apt-get update && sudo apt-get install -y docker-credential-secretservice store; then
-    break
-  else
-    retry_count=$((retry_count + 1))
-    sleep 10
-  fi
-done
-
 # Set environment variables for Docker Hub credentials
 export DOCKER_USERNAME=smritiorganization
 export DOCKER_PASSWORD=pass12341234
 
 # Configure the credential helper
-docker-credential-pass store --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+docker-credential-secretservice store --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
 # Log in to Docker Hub using the credential helper
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-# Check if the login was successful
-if [ $? -eq 0 ]; then
-  # Pull the Docker image
-  docker pull smritiorganization/ubuntu/apache2
-  # Run the Docker container
-  docker run -it smritiorganization/ubuntu/apache2
-else
-  echo "Login failed. Check your Docker Hub credentials."
-  exit 1
-fi
-
+# Pull the Docker image
+docker pull smritiorganization/ubuntu/apache2
