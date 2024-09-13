@@ -1,14 +1,2 @@
-#!/bin/bash
-
-# Set environment variables for Docker Hub credentials
-export DOCKER_USERNAME=smritiorganization
-export DOCKER_PASSWORD=pass12341234
-
-# Configure the credential helper
-docker-credential-secretservice store --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-
-# Log in to Docker Hub using the credential helper
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
-# Pull the Docker image
-docker pull smritiorganization/myapp:latest
+	  #!/bin/bash
+apt install -y apache2
