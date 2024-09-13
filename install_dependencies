@@ -1,2 +1,17 @@
-	  #!/bin/bash
-apt install -y apache2
+#!/bin/bash
+
+# Install Docker
+sudo amazon-linux-extras install docker -y
+
+# Start Docker service
+sudo service docker start
+
+# Install Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Build Docker image from Dockerfile
+docker build -t my-app .
+
+# Deploy Docker container using Docker Compose
+docker-compose up -d
