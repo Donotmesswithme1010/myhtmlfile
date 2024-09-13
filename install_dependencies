@@ -1,7 +1,11 @@
-#!/bin/bash
+# Update the package list
+apt-get update -y
 
-# Build the Docker image
- docker buildx build -t myhtmlfile .
+# Install Docker
+apt-get install -y docker.io
 
-# Run the Docker container
-docker run -d myhtmlfile
+# Start the Docker service
+service docker start
+
+# Enable the Docker service to start automatically on boot
+systemctl enable docker
