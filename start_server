@@ -9,10 +9,10 @@ export DOCKER_USERNAME=smritiorganization
 export DOCKER_PASSWORD=pass12341234
 
 # Install the docker-credential-helper package
-sudo apt-get update && sudo apt-get install docker-credential-helper
+sudo apt-get update && sudo apt-get install docker-credential-pass
 
 # Configure the credential helper
-docker-credential-helper store --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+docker-credential-pass store  --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
 # Log in to Docker Hub using the credential helper
 docker login -u $DOCKER_USERNAME --password-stdin
