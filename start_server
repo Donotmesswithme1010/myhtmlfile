@@ -4,6 +4,9 @@
 export DOCKER_USERNAME=smritiorganization
 export DOCKER_PASSWORD=pass12341234
 
+# Install the docker-credential-helper package
+sudo apt-get update && sudo apt-get install docker-credential-helper
+
 # Configure the credential helper
 docker-credential-helper store --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
