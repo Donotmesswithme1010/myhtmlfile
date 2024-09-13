@@ -11,4 +11,4 @@ docker-credential-secretservice store --username $DOCKER_USERNAME --password $DO
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 # Pull the Docker image
-docker pull smritiorganization/ubuntu/apache2
+docker pull smritiorganization/myapp:latest
