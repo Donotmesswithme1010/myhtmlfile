@@ -1,2 +1,11 @@
-	  #!/bin/bash
-apt install -y apache2
+#!/bin/bash
+
+# Set the Docker image name
+IMAGE_NAME="myapp"
+
+# Stop and remove all containers using the image
+docker stop $(docker ps -a -q --filter ancestor=$IMAGE_NAME)
+docker rm $(docker ps -a -q --filter ancestor=$IMAGE_NAME)
+
+# Remove the Docker image
+docker rmi $IMAGE_NAME
