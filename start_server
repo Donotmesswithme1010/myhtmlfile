@@ -5,11 +5,11 @@ sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificat
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
 
-# Install the docker-credential-pass package with retry mechanism
+# Install the docker-credential-secretservice store package with retry mechanism
 retry_count=0
 max_retries=5
 while [ $retry_count -lt $max_retries ]; do
-  if sudo apt-get update && sudo apt-get install -y docker-credential-pass; then
+  if sudo apt-get update && sudo apt-get install -y docker-credential-secretservice store; then
     break
   else
     retry_count=$((retry_count + 1))
