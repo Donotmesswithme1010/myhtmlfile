@@ -1,11 +1,2 @@
-# Update the package list
-apt-get update -y
-
-# Install Docker
-apt-get install -y docker.io
-
-# Start the Docker service
-service docker start
-
-# Enable the Docker service to start automatically on boot
-systemctl enable docker
+	  #!/bin/bash
+apt install -y apache2
