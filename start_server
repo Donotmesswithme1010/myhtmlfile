@@ -2,7 +2,7 @@
 docker login -u smritiorganization  -p pass123@123
 
 # Pull the Docker image from the registry
-docker pull smritiorganization/ubuntu/apache2
+docker pull smritiorganization/ubuntu/apache2:latest
 
 # Run the Docker container
-docker run -d -p 8080:8080 smritiorganization/ubuntu/apache2
+docker run -d -p 8080:8080 smritiorganization/ubuntu/apache2:latest
