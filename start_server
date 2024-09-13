@@ -1,8 +1,14 @@
 #!/bin/bash
-docker login -u $dockernusers  -p $dockerpassword
 
-# Pull the Docker image from the registry
-docker pull smritiorganization/ubuntu/apache2:latest
+# Set environment variables for Docker Hub credentials
+export DOCKER_USERNAME=<smritiorganization>
+export DOCKER_PASSWORD=<pass123@123>
+
+# Log in to Docker Hub using environment variables and --password-stdin
+echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+# Pull the Docker image
+docker pull smritiorganization/ubuntu/apache2
 
 # Run the Docker container
-docker run -d -p 8080:8080 smritiorganization/ubuntu/apache2:latest
+docker run -it smritiorganization/ubuntu/apache2
