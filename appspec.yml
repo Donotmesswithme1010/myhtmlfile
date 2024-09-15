@@ -3,7 +3,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html
+    destination: /opt/codedeploy-agent/deployment-root/
 
 hooks:
   BeforeInstall:
